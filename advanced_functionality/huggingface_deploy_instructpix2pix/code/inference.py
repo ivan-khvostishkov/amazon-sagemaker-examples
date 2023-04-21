@@ -53,6 +53,9 @@ def predict_fn(input_data, model):
 def output_fn(prediction_output, accept):
     logger.debug('output_fn: Got output image: {}'.format(prediction_output))
     logger.debug('output_fn: Accept: {}'.format(accept))
+    
+    if accept != PLAINTEXT_CONTENT_TYPE:
+        raise ValueError('Requested unsupported ContentType in Accept: ' + accept)
 
     if accept != PLAINTEXT_CONTENT_TYPE:
         raise ValueError('Requested unsupported ContentType in Accept: ' + accept)
